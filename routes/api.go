@@ -44,19 +44,23 @@ func getVote(c *gin.Context) {
 
 func postVote(c *gin.Context) {
 	var vote Vote
-	c.Bind(&vote)
+
+	if c.Bind(&vote) != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "not a valid form"})
+		return
+	}
+
+	gc, err := models.GetCandidateById(vote.Cid)
+	handlers.Error(err)
+	var vgc int = gc.Id
+	if vgc == 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"message": "not a valid form"})
+		return
+	}
 
 	su, err := models.StoreUser(vote.Email)
 	if err != nil {
 		log.Panic(err)
-		return
-	}
-	gc, err := models.GetCandidateById(vote.Cid)
-	handlers.Error(err)
-
-	var vgc int = gc.Id
-	if vgc == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "not a valid form"})
 		return
 	}
 
