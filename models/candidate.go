@@ -21,12 +21,12 @@ type Candidate struct {
 
 func init() {
 	StoreCandidate(Candidate{
-		Name:        "dark-side",
-		Description: "Join Dark Side",
+		Name:        "Rebel Alliance",
+		Description: "May the force be with you",
 	})
 	StoreCandidate(Candidate{
-		Name:        "light-side",
-		Description: "Join Rebel Alliance",
+		Name:        "Galactic Empire",
+		Description: "I find your lack of faith disturbing.",
 	})
 }
 
@@ -40,7 +40,7 @@ func StoreCandidate(ca Candidate) {
 	ca.Timestamp = t.String()
 
 	r := reflect.ValueOf(ca)
-	key := "baselines:candidate:"
+	key := "baseline:candidate:"
 
 	for i := 0; i < r.NumField(); i++ {
 		field := r.Type().Field(i).Name
@@ -56,7 +56,7 @@ func GetAllCandidates() ([]Candidate, error) {
 	var candidates []Candidate
 	rds := db.Connect()
 	defer rds.Close()
-	keys, err := rds.Do("KEYS", "baselines:candidate:*")
+	keys, err := rds.Do("KEYS", "baseline:candidate:*")
 	handlers.Error(err)
 
 	for _, k := range keys.([]interface{}) {
@@ -81,7 +81,7 @@ func GetCandidateById(cid string) (Candidate, error) {
 	rds := db.Connect()
 	defer rds.Close()
 
-	reply, err := redis.Values(rds.Do("HGETALL", "baselines:candidate:"+cid))
+	reply, err := redis.Values(rds.Do("HGETALL", "baseline:candidate:"+cid))
 	handlers.Error(err)
 
 	if err := redis.ScanStruct(reply, &candidate); err != nil {
