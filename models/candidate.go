@@ -37,7 +37,7 @@ func StoreCandidate(ca Candidate) {
 	currentCandidateId += 1
 	t := time.Now()
 	ca.Id = currentCandidateId
-	ca.Timestamp = t.String()
+	ca.Timestamp = t.Format(time.RFC3339)
 
 	r := reflect.ValueOf(ca)
 	key := "baseline:candidate:"
@@ -46,9 +46,11 @@ func StoreCandidate(ca Candidate) {
 		field := r.Type().Field(i).Name
 		value := r.Field(i).Interface()
 
-		reply, err := rds.Do("HSET", key+strconv.Itoa(ca.Id), field, value)
+		_, err := rds.Do("HSET", key+strconv.Itoa(ca.Id), field, value)
 		handlers.Error(err)
-		fmt.Println("store: ", reply)
+
+		_, err = rds.Do("ZINCRBY", "votes", 0, currentCandidateId)
+		handlers.Error(err)
 	}
 }
 
