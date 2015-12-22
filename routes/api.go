@@ -2,9 +2,11 @@ package routes
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/maps90/go-poll/handlers"
 	"github.com/maps90/go-poll/models"
+	"log"
 	"net/http"
 )
 
@@ -23,8 +25,92 @@ func PourGin() {
 		v1.GET("votes", getVote)
 		v1.POST("votes", postVote)
 		v1.GET("apprentices", getUser)
+		v1.GET("jedi", getJedi)
+		v1.GET("sith", getSith)
 	}
 	router.Run(":8080")
+}
+
+func getSith(c *gin.Context) {
+	var users []models.User
+	reply, err := models.GetSith()
+	handlers.Error(err)
+	scanResults, ok := reply.([]interface{})
+	if !ok || len(scanResults) != 2 {
+		log.Fatalln("Cannot cast scan results")
+	}
+
+	if b, ok := scanResults[0].([]byte); !ok || string(b) == "0" {
+		log.Println("Done fetching keys")
+
+	}
+
+	keys, ok := scanResults[1].([]interface{})
+	if !ok {
+		log.Fatalln("Cannot cast scan results")
+	}
+
+	for key := range keys {
+		var user models.User
+		b := keys[key].([]byte)
+		if !ok {
+			log.Fatalln("Cannot cast key")
+		}
+		if err := json.Unmarshal(b, &user); err != nil {
+			log.Fatalln("Cannot unmarshal")
+		}
+		users = append(users, user)
+		fmt.Println(string(b))
+	}
+
+	if len(users) <= 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"status":  http.StatusNotFound,
+			"message": "no user found",
+		})
+	} else {
+		c.JSON(http.StatusOK, users)
+	}
+}
+
+func getJedi(c *gin.Context) {
+	var users []models.User
+	reply, err := models.GetJedi()
+	handlers.Error(err)
+	scanResults, ok := reply.([]interface{})
+	if !ok || len(scanResults) != 2 {
+		log.Fatalln("Cannot cast scan results")
+	}
+
+	if b, ok := scanResults[0].([]byte); !ok || string(b) == "0" {
+		log.Println("Done fetching keys")
+	}
+
+	keys, ok := scanResults[1].([]interface{})
+	if !ok {
+		log.Fatalln("Cannot cast scan results")
+	}
+
+	for key := range keys {
+		var user models.User
+		b := keys[key].([]byte)
+		if !ok {
+			log.Fatalln("Cannot cast key")
+		}
+		if err := json.Unmarshal(b, &user); err != nil {
+			log.Fatalln("Cannot unmarshal")
+		}
+		users = append(users, user)
+		fmt.Println(string(b))
+	}
+	if len(users) <= 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"status":  http.StatusNotFound,
+			"message": "no user found",
+		})
+	} else {
+		c.JSON(http.StatusOK, users)
+	}
 }
 
 func getUser(c *gin.Context) {
@@ -60,7 +146,10 @@ func getCandidate(c *gin.Context) {
 func getVote(c *gin.Context) {
 	votes, err := models.GetVotes()
 	if err != nil {
-		c.JSON(http.StatusServiceUnavailable, gin.H{"message": "I've got a bad feeling about this"})
+		c.JSON(http.StatusServiceUnavailable, gin.H{
+			"status":  http.StatusServiceUnavailable,
+			"message": "I've got a bad feeling about this",
+		})
 		return
 	}
 
@@ -71,7 +160,10 @@ func getVote(c *gin.Context) {
 		handlers.Error(err)
 		c.JSON(http.StatusOK, vr)
 	default:
-		c.JSON(http.StatusServiceUnavailable, gin.H{"message": "I've got a bad feeling about this"})
+		c.JSON(http.StatusServiceUnavailable, gin.H{
+			"status":  http.StatusServiceUnavailable,
+			"message": "I've got a bad feeling about this",
+		})
 		return
 	}
 
@@ -81,7 +173,10 @@ func postVote(c *gin.Context) {
 	var vote Vote
 
 	if c.Bind(&vote) != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "not a valid form"})
+		c.JSON(http.StatusBadRequest, gin.H{
+			"status":  http.StatusBadRequest,
+			"message": "not a valid form",
+		})
 		return
 	}
 
@@ -89,7 +184,10 @@ func postVote(c *gin.Context) {
 	handlers.Error(err)
 	var vgc int = gc.Id
 	if vgc == 0 {
-		c.JSON(http.StatusBadRequest, gin.H{"message": "not a valid form"})
+		c.JSON(http.StatusBadRequest, gin.H{
+			"status":  http.StatusBadRequest,
+			"message": "not a valid form",
+		})
 		return
 	}
 
@@ -102,16 +200,25 @@ func postVote(c *gin.Context) {
 	su, err := models.StoreUser(opt)
 
 	if su == nil {
-		c.JSON(http.StatusServiceUnavailable, gin.H{"message": "Opps, Something went wrong."})
+		c.JSON(http.StatusServiceUnavailable, gin.H{
+			"status":  http.StatusServiceUnavailable,
+			"message": "Opps, Something went wrong.",
+		})
 		return
 	}
 
 	if w := su.(int64); w == 0 {
-		c.JSON(http.StatusOK, gin.H{"message": "you have already choosen a path, there is no going back."})
+		c.JSON(http.StatusNoContent, gin.H{
+			"status":  http.StatusNoContent,
+			"message": "you have already choosen a path, there is no going back.",
+		})
 	} else {
 		_, err := models.StoreVote(vote.Cid)
 		handlers.Error(err)
-		c.JSON(http.StatusOK, gin.H{"message": "you have join the " + gc.Name + ", " + gc.Description})
+		c.JSON(http.StatusOK, gin.H{
+			"status":  http.StatusOK,
+			"message": "you have join the " + gc.Name + ", " + gc.Description,
+		})
 		models.CalculateResult()
 	}
 }

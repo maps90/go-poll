@@ -71,3 +71,25 @@ func GetAllUsers() ([]interface{}, error) {
 	return keys, nil
 
 }
+
+func GetSith() (interface{}, error) {
+	rds := db.Connect()
+	defer rds.Close()
+	keys, err := rds.Do("SSCAN", "users", 0, "MATCH", "*Galactic Empire*")
+	if err != nil {
+		return nil, err
+	}
+
+	return keys, nil
+}
+
+func GetJedi() (interface{}, error) {
+	rds := db.Connect()
+	defer rds.Close()
+	keys, err := rds.Do("SSCAN", "users", 0, "MATCH", "*Rebel Alliance*")
+	if err != nil {
+		return nil, err
+	}
+
+	return keys, nil
+}
