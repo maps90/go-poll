@@ -1,0 +1,32 @@
+// BASE SCSS is used for overwrite bootstrap styling or set base scss
+
+body {
+	overflow-x: hidden!important;
+	background-color: #ffffff;
+	color: $text-color !important;
+	font:$font-size-base $font-main-sans-serif;
+}
+
+
+a {
+	color: $link-color;
+	@include transition(all, 0.2s, ease-in-out);
+
+	&:hover,
+	&:focus {
+		text-decoration: none;
+	}
+}
+
+p {
+	line-height: 26px;
+}
+
+.breadcrumb {
+	margin-bottom: 0px;
+	padding: 8px 15px;
+	border-radius: 0;
+	background-color: transparent;
+	list-style: none outside none;
+}
+

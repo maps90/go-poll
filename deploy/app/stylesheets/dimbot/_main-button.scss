@@ -1,0 +1,33 @@
+//
+// Overwrite base bootstrap styling for Buttons
+// --------------------------------------------------
+
+// Common styles
+.btn-default,
+.btn-red,
+.btn-yellow,
+.btn-blue,
+.btn-green {
+	text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+	//$shadow: inset 0 1px 0 rgba(255,255,255,.15), 0 1px 1px rgba(0,0,0,.055);
+	// @include box-shadow($shadow);
+	color: white;
+	font-weight: 700;
+	border: none;
+	// Reset the shadow
+		&:active,
+		&.active,
+		&:focus {
+		color: white;
+		@include box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+	}
+}
+
+
+// Apply the mixin to the buttons
+.btn-default { @include btn-styles($btn-default-bg); text-shadow: 0 1px 0 #fff; border-color: #ccc; color: #333; }
+.btn-red { @include btn-styles($btn-red-bg); }
+.btn-yellow { @include btn-styles($btn-yellow-bg); }
+.btn-blue { @include btn-styles($btn-blue-bg); }
+.btn-green { @include btn-styles($btn-green-bg); }
+

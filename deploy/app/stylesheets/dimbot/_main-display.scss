@@ -1,0 +1,33 @@
+.u-table {
+  display: table;
+  width: 100%;
+}
+
+.u-cell {
+  display: table-cell;
+}
+
+.u-va-middle {
+  vertical-align: middle;
+}
+
+.u-margin-auto {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+.u-hide-text {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+q, blockquote {
+	quotes: none;
+	border-left: none;
+}

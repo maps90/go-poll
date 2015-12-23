@@ -1,0 +1,134 @@
+
+//Dimbot Template 1.0 variable.scss
+$base-url             : "../img";
+//====== COLOR ==========
+$color-black          : #000000;
+$color-white          : #FFFFFF;
+$color-blue-standard  :	#2196f3;
+$color-blue-sky       :	#64b5f6;
+$color-blue           : #23B7E5;
+$color-blue-light     : #03a9f4;
+$color-blue-dark      : #0277bd;
+$color-green          : #27C24C;
+$color-green-light    : #8bc34a;
+$color-green-dark     : #388e3c;
+$color-green-bright   :	#76ff03;
+$color-red            : #F05050;
+$color-yellow         : #FAD733;
+$color-orange         : #f57c00;
+$color-orange-dark    : #e65100;
+$color-orange-light   :	#ffc107;
+$color-pink           : #c2185b;
+$color-pink-dark      : #880e4f;
+$color-purple         : #7266BA;
+$color-green-light    : #38FF36;
+$color-grey-darker    : #303030;
+$color-grey-dark      : #333333;
+$color-grey           : #3B3B3B;
+$color-grey-light     : #B5B5B5;
+$color-grey-lighter   : #CCCCCC;
+$color-grey-white     : #F4F4F4;
+$menu-grey-bg         : #EEEEEE;
+$menu-grey            : #C6C6C6;
+$text-color           : #2C2C2C;
+$text-light           : #A6A9A8;
+$color-primary        : #7266BA;
+$color-success        : #27C24C;
+$color-info           : #23B7E5;
+$color-warning        : #FAD733;
+$color-danger         : #F05050;
+$link-color           : $color-red;
+$link-hover-color     : darken($link-color, 15%);
+//====== TYPOGRAPHY ==========
+$font-main-sans-serif : 'Open Sans Condensed', Arial, Verdana, sans-serif;
+$font-main-serif      : Georgia, "Times New Roman", Times, serif;
+$font-main-monospace  : Monaco, Menlo, Consolas, "Courier New", monospace;
+$font-main-base       : $font-main-sans-serif;
+$font-size-base       : 1.4em;
+$font-size-large      : ceil(($font-size-base * 1.24)); // ~16px
+$font-size-small      : ceil(($font-size-base * 0.85)); // ~11px
+$font-size-h1         : floor(($font-size-base * 1.85)); // ~24px
+$font-size-h2         : floor(($font-size-base * 1.7)); // ~22px
+$font-size-h3         : ceil(($font-size-base * 1.385)); // ~18px
+$font-size-h4         : ceil(($font-size-base * 1.32)); // ~17px
+$font-size-h5         : ceil(($font-size-base * 1.24)); // ~16px
+$font-size-h6         : ceil(($font-size-base * 1.08)); // ~14px
+$line-height-base     : 1.428571429;
+$headings-font-family : $font-main-base;
+$headings-font-weight : 500;
+$headings-line-height : 1.1;
+$headings-color       : inherit;
+//========= BUTTON ========
+$btn-font-weight      : normal !default;
+$btn-default-color    : #333 !default;
+$btn-default-bg       : $color-grey-white !default;
+$btn-default-border   : #ccc !default;
+$btn-red-color        : #fff !default;
+$btn-red-bg           : $color-red !default;
+$btn-red-border       : darken($color-red, 5%) !default;
+$btn-yellow-color     : #fff !default;
+$btn-yellow-bg        : $color-yellow !default;
+$btn-yellow-border    : darken($color-yellow, 5%) !default;
+$btn-blue-color       : #fff !default;
+$btn-blue-bg          : $color-blue !default;
+$btn-blue-border      : darken($color-blue, 5%) !default;
+$btn-green-color      : #fff !default;
+$btn-green-bg         : $color-green !default;
+$btn-green-border     : darken($color-green, 5%) !default;
+
+
+
+// MEDIA QUERIES
+//** Deprecated `$screen-xs` as of v3.0.1
+$screen-xs:                  480px !default;
+//** Deprecated `$screen-xs-min` as of v3.2.0
+$screen-xs-min:              $screen-xs !default;
+//** Deprecated `$screen-phone` as of v3.0.1
+$screen-phone:               $screen-xs-min !default;
+
+// Small screen / tablet
+//** Deprecated `$screen-sm` as of v3.0.1
+$screen-sm:                  768px !default;
+$screen-sm-min:              $screen-sm !default;
+//** Deprecated `$screen-tablet` as of v3.0.1
+$screen-tablet:              $screen-sm-min !default;
+
+// Medium screen / desktop
+//** Deprecated `$screen-md` as of v3.0.1
+$screen-md:                  992px !default;
+$screen-md-min:              $screen-md !default;
+//** Deprecated `$screen-desktop` as of v3.0.1
+$screen-desktop:             $screen-md-min !default;
+
+// Large screen / wide desktop
+//** Deprecated `$screen-lg` as of v3.0.1
+$screen-lg:                  1200px !default;
+$screen-lg-min:              $screen-lg !default;
+//** Deprecated `$screen-lg-desktop` as of v3.0.1
+$screen-lg-desktop:          $screen-lg-min !default;
+
+// So media queries don't overlap when required, provide a maximum
+$screen-xs-max:              ($screen-sm-min - 1) !default;
+$screen-sm-max:              ($screen-md-min - 1) !default;
+$screen-md-max:              ($screen-lg-min - 1) !default;
+
+
+// header size
+
+$header-height-S: 50px;
+$header-height-L: 80px;
+
+// Navigation size
+
+$nav-width-S: 260px;
+
+// Search size
+
+$search-height-S: 50px;
+$search-height-L: 120px;
+
+// z-index
+
+$below-content: 1;
+$content: 2;
+$above-content: 3;

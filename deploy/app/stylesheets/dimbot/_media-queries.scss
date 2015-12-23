@@ -1,0 +1,86 @@
+// Media queries all element
+
+@media (max-with: $screen-xs-max) {
+	#header-top {
+		#header-left {
+
+			text-align: center;
+			margin: 0 auto;
+
+			#logo {
+				margin: 0 auto;
+			}
+		}
+	}
+
+	#header-mainmenu {
+		background-image: none !important;
+	}
+	.feature-block {
+		border-bottom: 1px solid $color-grey-white;
+	}
+
+	#main-products {
+		a {
+			border-bottom: 1px solid $color-grey-white;
+		}
+	}
+	#main-bottom {
+		.menu {
+			margin-top: 10px;
+		}
+		.menu ul li {
+			font-size: 10px;
+			padding: 0 5px;
+			margin-left: 5px;
+		}
+	}
+
+}
+
+@media only screen and (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {
+	.line-core {
+		background: none;
+	}
+	#main-bottom {
+		.menu {
+			margin-top: 10px;
+		}
+		.menu ul li {
+			font-size: 12px;
+			padding: 0 5px;
+			margin-left: 5px;
+		}
+	}
+}
+
+@media only screen and (min-width: $screen-sm-max) {
+	header#header {
+		height: 80px;
+		background: transparent none repeat scroll 0% 0%;
+		box-shadow: none;
+		width: 100%;
+		position: absolute;
+	}
+	.navbar {
+		position: absolute;
+		bottom: auto;
+		right: 10em;
+		@include transform(translateY(-50%));
+		top: 50%;
+		z-index: 10;
+	}
+}
+
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+
+}
+
+@media (min-width: $screen-md-min) and (max-width: $screen-md-max) {
+
+}
+
+
+@media (min-width: $screen-lg-min) {
+
+}

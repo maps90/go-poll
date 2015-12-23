@@ -16,21 +16,6 @@ type Vote struct {
 	Name  string `form:"name" json:"name" binding:"required"`
 }
 
-func PourGin() {
-	router := gin.Default()
-	v1 := router.Group("api/v1")
-	{
-		v1.GET("candidates", getCandidates)
-		v1.GET("candidate/:id", getCandidate)
-		v1.GET("votes", getVote)
-		v1.POST("votes", postVote)
-		v1.GET("apprentices", getUser)
-		v1.GET("jedi", getJedi)
-		v1.GET("sith", getSith)
-	}
-	router.Run(":8080")
-}
-
 func getSith(c *gin.Context) {
 	var users []models.User
 	reply, err := models.GetSith()

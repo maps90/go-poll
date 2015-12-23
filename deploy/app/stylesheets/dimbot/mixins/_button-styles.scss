@@ -1,0 +1,29 @@
+// Mixin for generating new styles
+@mixin btn-styles($btn-color: #555) {
+ // @include gradient-vertical($start-color: $btn-color, $end-color: darken($btn-color, 12%));
+  //@include reset-filter(); // Disable gradients for IE9 because filter bleeds through rounded corners
+  background-color: $btn-color;
+  border-bottom: solid 3px $btn-color;
+  border-color: darken($btn-color, 14%);
+
+  &:hover,
+  &:focus  {
+   background-color: darken($btn-color, 5%);
+  }
+
+  &:active,
+  &.active {
+    background-color: darken($btn-color, 12%);
+    border-color: darken($btn-color, 14%);
+  }
+}
+
+// Common styles
+.btn {
+	@include transition(all, 0.2s, ease-in-out);
+  // Remove the gradient for the pressed/active state
+  &:active,
+  &.active {
+    background-image: none;
+  }
+}

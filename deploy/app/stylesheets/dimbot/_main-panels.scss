@@ -1,0 +1,160 @@
+.panel {
+	position: relative;
+	display: table;
+	width: 100%;
+	margin:0;
+	border-radius: 0!important;
+}
+
+.panel-cover {
+	background: #01162f;
+	/* Old browsers */
+	/* IE9 SVG, needs conditional override of 'filter' to 'none' */
+}
+
+.panel-bg {
+	background-size: cover;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	opacity: 0.2;
+}
+
+.panel-cover-text {
+	position: relative;
+	z-index: 5;
+	.panel-cover-title {
+		font-weight: 800;
+		font-size: 72px;
+		color: #FFF;
+		max-width: 960px;
+		margin: 0px auto 20px;
+		padding: 0px 15px;
+	}
+	.panel-cover-blockquote {
+		font-size: 36px;
+		font-weight: 300;
+		line-height: 1.4em;
+		color: #FFF;
+		max-width: 960px;
+		margin: 0 auto;
+		padding: 0 15px;
+	}
+}
+
+.panel-cover-cite {
+	display: block;
+	text-transform: uppercase;
+	font-weight: 800;
+	font-size: 16px;
+	line-height: 1.6em;
+	margin-top: 10px;
+}
+
+#fp-nav ul li a span, .fp-slidesNav ul li a span {
+	background-color: #FFF;
+}
+
+.choose-side {
+	top: 0;
+	height: 100%;
+	width: 100%;
+	.face {
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 100%;
+		overflow: hidden;
+		position: absolute;
+		top: 0px;
+		width: 100%;
+	}
+}
+
+.light-side {
+	background-position: left center;
+	background-size: cover;
+	background-image: url('../img/bg/starwars-lightside.jpg');
+	top: 0;
+	height: 100%;
+	position: absolute;
+	left: 0px;
+	width: 50%;
+	.votes {
+		right: 20px;
+	}
+}
+
+.dark-side {
+	background-position: left center;
+	background-size: cover;
+	background-image: url('../img/bg/starwars-darkside.jpg');
+	top: 0;
+	height: 100%;
+	position: absolute;
+	right: 0px;
+	width: 50%;
+	.face {
+		background-position: right center;
+	}
+	.votes {
+		left: 20px;
+	}
+}
+
+.panel-cover-text {
+	h5 {
+		font-size: 17px;
+		color: #FFF;
+	}
+}
+
+.votes {
+	position: absolute;
+	top: 50%;
+	padding: 10px;
+	z-index:100;
+}
+
+img.crest {
+	height: 100px;
+	width: auto;
+	&:hover {
+		opacity: 0.5;
+	}
+}
+
+.header-title {
+	z-index: 100;
+	padding-top: 20px;
+	position: relative;
+	h1 {
+		color: #fff;
+		text-transform: uppercase;
+		font-weight: bold;
+		position: relative;
+		width: 35%;
+		margin: 20px auto;
+		height: auto;
+	}
+}
+
+.line-core {
+	background: rgb(255, 255, 255) none repeat scroll 0% 0%;
+	z-index: 100;
+	display: block;
+	top: 18px;
+	height: 3px;
+	width: 10%;
+	position: absolute;
+	&.left {
+		left: 50px;
+		background: transparent linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%) repeat scroll 0% 0%;
+	}
+	&.right {
+		right: 50px;
+		background: transparent linear-gradient(to left, rgba(255, 255, 255, 0) 0%, rgb(255, 255, 255) 100%) repeat scroll 0% 0%;
+	}
+}

@@ -1,0 +1,14 @@
+// Core CSS
+@import "dimbot/variables";
+@import "dimbot/mixins";
+
+// CSS MAIN
+@import "dimbot/base";
+@import "dimbot/main-button";
+@import "dimbot/main-display";
+@import "dimbot/main-panels";
+@import "dimbot/main-slides";
+@import "dimbot/main-menu";
+
+// RESPONSIVE
+@import "dimbot/media-queries";
