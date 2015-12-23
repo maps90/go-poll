@@ -1,0 +1,12 @@
+[submodule "font-awesome"]
+	path = vendors/font-awesome
+	url = https://github.com/FortAwesome/Font-Awesome.git
+[submodule "Animate"]
+	path = vendors/AnimateCSS
+	url = https://github.com/geoffgraham/animate.scss.git
+[submodule "bootstrap"]
+	path = vendors/bootstrap-sass
+	url = https://github.com/twbs/bootstrap-sass
+[submodule "fullPage"]
+	path = vendors/fullPage
+	url = https://github.com/alvarotrigo/fullPage.js.git
