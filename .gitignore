@@ -7,6 +7,7 @@
 
 go-poll
 .DS_Store
+.sass-cache
 
 # Folders
 _obj
